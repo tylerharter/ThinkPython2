@@ -644,14 +644,14 @@ writing fruitful functions in a few chapters.
 \section{Creating Fruitful Functions (CS 301 Extra)}
 
 Consider this function for printing a person's name by combining their
-first and last time into a string string:
+first and last name into a string:
 
 \begin{verbatim}
 def get_full_name(first, last):
     print(first + " " + last)
 \end{verbatim}
 
-We trying calling and checking the result:
+We try calling and checking the result:
 
 \begin{verbatim}
 >>> result = get_full_name("Alice", "Anderson")
@@ -732,7 +732,7 @@ def get_full_name(first, last):
 
 One very important different between printing and returning is that
 you can print many times, but once a return statement is encountered,
-the function stops immediately.  Let's compare two version of a
+the function stops immediately.  Let's compare two versions of a
 countdown function.
 
 \begin{verbatim}
@@ -774,7 +774,8 @@ statement, like this:
 \begin{verbatim}
 def countdown_return():
     value = '3'
-    # this represents the character you get when you press Enter on your keyboard
+    # '\n' represents a newline character.
+		# This is the character you get when you press Enter on your keyboard
     value += '\n'
     value += '2'
     value += '\n'
