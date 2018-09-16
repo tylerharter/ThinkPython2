@@ -1,4 +1,4 @@
-\chapter{Functions}
+\chapter{Functions (modified for CS 301)}
 \label{funcchap}
 
 In the context of programming, a {\bf function} is a named sequence of
@@ -638,6 +638,161 @@ The functions we have written so far are all void.  We will start
 writing fruitful functions in a few chapters.
 \index{NoneType type}
 \index{type!NoneType}
+
+
+\clearpage
+\section{Creating Fruitful Functions (CS 301 Extra)}
+
+Consider this function for printing a person's name by combining their
+first and last time into a string string:
+
+\begin{verbatim}
+def get_full_name(first, last):
+    print(first + " " + last)
+\end{verbatim}
+
+We trying calling and checking the result:
+
+\begin{verbatim}
+>>> result = get_full_name("Alice", "Anderson")
+Alice Anderson
+>>> print(result)
+None
+\end{verbatim}
+
+We see that \verb"get_full_name" produces output (``Alice Anderson''
+is printed to the screen), but it is not a fruitful function (the
+\verb"result" variable doesn't get a value, so we see \verb"None" when
+we try to print it).
+
+\textit{What if we want the output of a function to go to a variable,
+  instead of to the screen?}
+
+One reason we might want to send the output of a function to a
+variable instead of just displaying the output on the screen is that
+maybe we want to do something additional with the value computed by
+the function before we display the result.  For example, maybe we
+really want to print ``Welcome Alice Anderson!'' to the screen.  We
+want a \verb"get_full_name" function that helps us put together
+``Alice Anderson'', but we want to add our own flourish (``Welcome''
+before the name and ``!'' after).
+
+Turning \verb"get_full_name" into a fruitful function so that we can
+save it's output in a variable is simple; we just replace \verb"print"
+with \verb"return", like this:
+
+\begin{verbatim}
+def get_full_name(first, last):
+    return(first + " " + last)
+\end{verbatim}
+
+Now, if we rerun our early commands, we see the following:
+
+\begin{verbatim}
+>>> result = get_full_name("Alice", "Anderson")
+>>> print(result)
+Alice Anderson
+\end{verbatim}
+
+Notice two things here: (1) calling \verb"get_full_name" no longer
+causes something to be immediately displayed, and (2) \verb"result"
+now contains Alice's full name, instead of just
+\verb"None".  We have turned \verb"get_full_name" into a fruitful
+function.
+
+Now, we can produce the greeting we want:
+
+\begin{verbatim}
+full = get_full_name("Alice", "Anderson")
+greeting = "Welcome " + full + "!"
+print(greeting)
+\end{verbatim}
+
+Getting this output:
+
+\begin{verbatim}
+>>> full = get_full_name("Alice", "Anderson")
+>>> greeting = "Welcome " + full + "!"
+>>> print(greeting)
+Welcome Alice Anderson!
+\end{verbatim}
+
+We have seen how print and return are similar, sending output either
+to the screen or to a variable, but there are some other important
+differences to remember.
+
+Unlike when you print something, you don't need to put a return value
+in parentheses, so we could have written our function like this and it
+would have behaved the same:
+
+\begin{verbatim}
+def get_full_name(first, last):
+    return first + " " + last
+\end{verbatim}
+
+One very important different between printing and returning is that
+you can print many times, but once a return statement is encountered,
+the function stops immediately.  Let's compare two version of a
+countdown function.
+
+\begin{verbatim}
+def countdown_print():
+    print(3)
+    print(2)
+    print(1)
+
+def countdown_return():
+    return 3
+    return 2
+    return 1
+\end{verbatim}
+
+Let's try calling both of them:
+
+\begin{verbatim}
+>>> countdown_print()
+3
+2
+1
+>>> result = countdown_return()
+>>> print(result)
+3
+\end{verbatim}
+
+We see that all the print statements in \verb"countdown_print" produce
+output, but only the first return statement in \verb"countdown_return"
+did anything.  As soon as \verb"return 3" executed, the function
+finished executing, a return value of 3 was put in the result
+variable, and the \verb"return 2" and \verb"return 1" statements never
+ran.
+
+If we really want the full countdown returned by
+\verb"countdown_return", we need to combine all the numbers in a
+single variable, and then return that with a single \verb"return"
+statement, like this:
+
+\begin{verbatim}
+def countdown_return():
+    value = '3'
+    # this represents the character you get when you press Enter on your keyboard
+    value += '\n'
+    value += '2'
+    value += '\n'
+    value += '1'
+    return value
+\end{verbatim}
+
+And now we get what we want when we call it:
+
+\begin{verbatim}
+>>> result = countdown_return()
+>>> print(result)
+3
+2
+1
+\end{verbatim}
+
+\clearpage
 
 
 \section{Why functions?}
